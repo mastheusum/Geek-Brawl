@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slime
   - Shoot
+  - EnemySpawn
   layers:
   - Default
   - TransparentFX
