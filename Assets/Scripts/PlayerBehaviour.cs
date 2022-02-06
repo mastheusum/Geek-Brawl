@@ -6,15 +6,18 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public float moveSpeed = 1;
     public Rigidbody2D rig;
-    public Animator anim;
-    public SpriteRenderer sprite;
+    public GameObject shoot;
+    
+    Animator anim;
+    SpriteRenderer sprite;
 
     float moveX;
     float moveY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,5 +32,13 @@ public class PlayerBehaviour : MonoBehaviour
         sprite.flipX = mousePos.x < Camera.main.WorldToScreenPoint(transform.position).x;
 
         rig.MovePosition(transform.position + new Vector3(moveX, moveY, 0) * moveSpeed * Time.deltaTime);
+
+        if (Input.GetAxisRaw("Fire1") != 0) {
+            SpawnShoot();
+        }
+    }
+
+    void SpawnShoot() {
+        Instantiate(shoot, transform.position, Quaternion.identity);
     }
 }

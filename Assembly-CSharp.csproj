@@ -40,6 +40,7 @@
      <Compile Include="Assets/Scripts/PlayerBehaviour.cs" />
      <Compile Include="Assets/Scripts/SlimeBehaviour.cs" />
      <Compile Include="Assets/Scripts/Pathfinding.cs" />
+     <Compile Include="Assets/Scripts/ShootBehaviour.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/victor/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
