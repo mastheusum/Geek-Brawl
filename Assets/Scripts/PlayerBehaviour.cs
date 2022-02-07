@@ -30,15 +30,21 @@ public class PlayerBehaviour : MonoBehaviour
         anim.SetBool("IsMoving", moveX != 0 || moveY != 0);
         // Se a posição do mouse na tela for menor que a posição do Player na tela então a imagem deve ser invertida horizontalmente
         sprite.flipX = mousePos.x < Camera.main.WorldToScreenPoint(transform.position).x;
-
+        
         rig.MovePosition(transform.position + new Vector3(moveX, moveY, 0) * moveSpeed * Time.deltaTime);
 
         if (Input.GetAxisRaw("Fire1") != 0) {
-            SpawnShoot();
+            anim.SetTrigger("Attack");
         }
     }
 
-    void SpawnShoot() {
+    public void SpawnShoot() 
+    {
         Instantiate(shoot, transform.position, Quaternion.identity);
+    }
+
+    public void SetAttacking() 
+    {
+        anim.ResetTrigger("Attack");
     }
 }
