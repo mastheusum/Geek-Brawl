@@ -33,10 +33,17 @@ public class ShootBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    void OnTriggerEnter2D(Collider2D other)
     {
         rig.velocity = Vector2.zero;
         rig.angularVelocity = 0;
         coll.enabled = false;
+        if (other.gameObject.tag == "Slime")
+        {
+            if ( other.gameObject.GetComponent<SlimeBehaviour>().RecieveDamage(50) )
+            {
+                GameManager.instance.AddScore(1);
+            }
+        }
     }
 }

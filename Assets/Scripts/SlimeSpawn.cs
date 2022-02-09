@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlimeSpawn : MonoBehaviour
 {
     public GameObject prefab;
+
     // Start is called before the first frame update
     void Start()
     {
