@@ -40,10 +40,8 @@ public class ShootBehaviour : MonoBehaviour
         coll.enabled = false;
         if (other.gameObject.tag == "Slime")
         {
-            if ( other.gameObject.GetComponent<SlimeBehaviour>().RecieveDamage(50) )
-            {
-                GameManager.instance.AddScore(1);
-            }
+            other.gameObject.SendMessage("RecieveDamage", 50);
+            SelfDestroy();
         }
     }
 }

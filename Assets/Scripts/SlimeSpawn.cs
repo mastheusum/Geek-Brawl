@@ -5,11 +5,12 @@ using UnityEngine;
 public class SlimeSpawn : MonoBehaviour
 {
     public GameObject prefab;
+    public float timeToSpawn = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", 2.0f, 2.0f);
+        InvokeRepeating("Spawn", timeToSpawn, timeToSpawn);
     }
 
     // Update is called once per frame

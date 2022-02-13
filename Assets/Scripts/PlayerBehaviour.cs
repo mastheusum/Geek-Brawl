@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public float maxLife = 100;
     public float moveSpeed = 1;
     public Rigidbody2D rig;
     public GameObject shoot;
+
+    public HUDManager hud;
     
     Animator anim;
     SpriteRenderer sprite;
 
+    float life;
     float moveX;
     float moveY;
     // Start is called before the first frame update
     void Start()
     {
+        life = maxLife;
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -36,6 +41,13 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetAxisRaw("Fire1") != 0) {
             anim.SetTrigger("Attack");
         }
+    }
+
+    public void RecieveDamage(float value)
+    {
+        life -= value;
+        hud.SendMessage("UpdateHealt", life / maxLife);
+        // anim.SetBool("Dead", life <= 0);
     }
 
     public void SpawnShoot() 
