@@ -10,17 +10,21 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject shoot;
 
     public HUDManager hud;
+    public AudioClip shootSound;
+    public AudioSource audioSource;
     
     Animator anim;
     SpriteRenderer sprite;
 
     float life;
+    int score = 0;
     float moveX;
     float moveY;
     // Start is called before the first frame update
     void Start()
     {
         life = maxLife;
+        AddScore(0);
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -43,6 +47,17 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    public void AddScore(int value)
+    {
+        score += value;
+        hud.SendMessage("UpdateScore", score);
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void RecieveDamage(float value)
     {
         life -= value;
@@ -52,6 +67,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void SpawnShoot() 
     {
+        audioSource.clip = shootSound;
+        audioSource.Play();
         Instantiate(shoot, transform.position, Quaternion.identity);
     }
 

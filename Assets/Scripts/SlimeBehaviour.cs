@@ -6,6 +6,8 @@ public class SlimeBehaviour : MonoBehaviour
 {
     public GameObject target;
     public float moveSpeed = 3;
+    public AudioClip deadAudio;
+    public AudioSource audioSource;
 
     Rigidbody2D rig;
     Animator anim;
@@ -19,6 +21,7 @@ public class SlimeBehaviour : MonoBehaviour
         target = GameObject.Find("Player");
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,12 +64,14 @@ public class SlimeBehaviour : MonoBehaviour
         if (life <= 0)
         {
             anim.SetBool("Dead", true);
-            GameManager.instance.AddScore(1);
+            target.SendMessage("AddScore", 1);
         }
     }
 
     public void SelfDestroy()
     {
+        audioSource.clip = deadAudio;
+        audioSource.Play();
         Destroy(gameObject);
     }
 

@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public HUDManager hud;
-
     int score = 0;
 
     void Awake()
@@ -25,20 +23,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    public void SetScore(int val)
     {
-        AddScore(0);
+        score = val;
     }
-
-    public void AddScore(int value)
-    {
-        score += value;
-        hud.SendMessage("UpdateScore", score);
-    }
-
-    public int GetScore()
-    {
-        return score;
-    }
-
 }

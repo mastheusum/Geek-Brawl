@@ -166,3 +166,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 3
+  deadAudio: {fileID: 8300000, guid: 4a5ee6d7386b247929bd6af1d91a083a, type: 3}
+  audioSource: {fileID: 0}
